@@ -1,0 +1,19 @@
+port_name,port_zone,vehicle_type,traveler_type,trip_table_suffix,direction,default_toll_in_dollars,port_choice_bias_constant,initial_queue,min_lanes,inc_lanes,allow_stack,min_wait,max_wait,balance_factor
+San Ysidro,5501,Passenger,General,General,Northbound,0,0,350,4,1,1,30,65,1
+San Ysidro,5501,Passenger,Ready,Ready,Northbound,0,0,600,6,1,1,30,55,1.45
+San Ysidro,5501,Passenger,SENTRI,SENTRI,Northbound,0,0,0,1,1,0,15,25,0
+San Ysidro,5502,Passenger,_All_,_All_,Southbound,0,0,0,1,1,0,5,10,0
+Otay Mesa,5503,Passenger,General,General,Northbound,0,-0.555187489,125,2,1,0,35,50,1
+Otay Mesa,5503,Passenger,Ready,Ready,Northbound,0,0.360878687,400,2,1,0,20,30,1.45
+Otay Mesa,5503,Passenger,SENTRI,SENTRI,Northbound,0,-0.7,0,1,1,0,15,25,0
+Otay Mesa,5503,Passenger,_All_,_All_,Southbound,0,-0.787115278,0,1,1,0,5,10,0
+Otay Mesa,5504,Commercial,General,GP,Northbound,0,0,0,1,1,0,5,10,1
+Otay Mesa,5504,Commercial,FAST,FAST,Northbound,0,0,0,1,1,0,5,10,1.22
+Otay Mesa,5505,Commercial,_All_,_All_,Southbound,0,0,0,1,1,0,5,10,0
+Otay Mesa East,5506,Passenger,General,General,Northbound,2,0,0,1,1,0,5,20,1
+Otay Mesa East,5506,Passenger,Ready,Ready,Northbound,2,0,0,1,1,0,5,20,1.45
+Otay Mesa East,5506,Passenger,SENTRI,SENTRI,Northbound,2,0,0,1,1,0,15,25,0
+Otay Mesa East,5507,Passenger,_All_,_All_,Southbound,1,0,0,1,1,0,5,10,0
+Otay Mesa East,5506,Commercial,General,GP,Northbound,5,0,0,1,1,0,5,10,1
+Otay Mesa East,5506,Commercial,FAST,FAST,Northbound,5,0,0,1,1,0,5,10,1.22
+Otay Mesa East,5507,Commercial,_All_,_All_,Southbound,5,0,0,1,1,0,5,10,0

@@ -1,0 +1,10 @@
+model/.Rhistory
+model/.Rproj.user
+model/run.bat
+data_in/poe_rates*.*
+data_out/*.csv
+data_out/*.xlsx
+data_out/debug*
+data_out/output_*/
+.Rhistory
+model/run.bat
