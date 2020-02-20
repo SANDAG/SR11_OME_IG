@@ -17,3 +17,4 @@ runid,Otay Mesa East,Otay Mesa Expansion,Year,use,root,folder
 16,5x5 Opt (+10% from the base),3 lanes,2030,yes,New_Runs,run_16 (2030_5x5_Opt_OM_CV13)
 17,5x5 Pess (-10% from the base),3 lanes,2030,yes,New_Runs,run_17 (2030_5x5_Pess_OM_CV13)
 18,No Build,0 lanes,2025,yes,2020_BWTS,1_2025_NoBuild
+19,,,2030,yes,2020_runs,1_2030_5x5_Build
