@@ -8,3 +8,5 @@ data_out/debug*
 data_out/output_*/
 .Rhistory
 model/run.bat
+.idea/
+powerbi/run_data/*.csv
