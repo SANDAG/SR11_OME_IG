@@ -2,7 +2,13 @@ import pandas as pd
 import os
 import numpy as np
 
+
 os.getcwd()
+
+# change to path of script
+abspath = os.path.abspath(__file__)
+dname = os.path.dirname(abspath)
+os.chdir(dname)
 
 runs = pd.read_csv('config/model_run_ids.csv')
 runs = runs[runs.use == 'yes']

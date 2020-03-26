@@ -1,20 +1,27 @@
-runid,Otay Mesa East,Otay Mesa Expansion,Year,use,root,folder
-1,No Build,0 lanes,2020,yes,New_Runs,run_1 (2020 No-Build OM CV_10)
-2,No Build,3 lanes,2020,yes,New_Runs,run_2 (2020_nobuild_OM_CV13)
-3,No Build,3 lanes,2030,yes,New_Runs,run_3 (2030_nobuild_OM_CV13)
-4,No Build,3 lanes,2040,yes,New_Runs,run_4 (2040_nobuild_OM_CV13)
-5,5x5 Base,3 lanes,2020,yes,New_Runs,run_5 (2020 Build 5x5 OM CV_13)
-6,5x5 Base,6 lanes,2020,yes,New_Runs,run_6 (2020 Build 5x5 OM CV_16)
-7,5x5 Base,3 lanes,2030,yes,New_Runs,run_7 (2030_5x5_OM_CV13)
-8,5x5 Base,3 lanes,2040,yes,New_Runs,run_8 (2040_5x5_OM_CV13)
-9,5x5 Base,6 lanes,2040,yes,New_Runs,run_9 (2040_5x5_OM_CV16)
-10,5x5 Opt (+10% from the base),3 lanes,2040,yes,New_Runs,run_10 (2040_5x5_Opt_OM_CV13)
-11,5x5 Pess (-10% from the base),3 lanes,2040,yes,New_Runs,run_11 (2040_5x5_Pess_OM_CV13)
-12,3x3,3 lanes,2020,yes,New_Runs,run_12 (2020_3x3_OM_CV13)
-13,3x3,3 lanes,2040,yes,New_Runs,run_13 (2040_3x3_OM_CV13)
-14,10x10,3 lanes,2020,yes,New_Runs,run_14 (2020_10x10_OM_CV13)
-15,10x10,3 lanes,2040,yes,New_Runs,run_15 (2040_10x10_OM_CV13)
-16,5x5 Opt (+10% from the base),3 lanes,2030,yes,New_Runs,run_16 (2030_5x5_Opt_OM_CV13)
-17,5x5 Pess (-10% from the base),3 lanes,2030,yes,New_Runs,run_17 (2030_5x5_Pess_OM_CV13)
-18,No Build,0 lanes,2025,yes,2020_BWTS,1_2025_NoBuild
-19,,,2030,yes,2020_runs,1_2030_5x5_Build
+runid,Otay Mesa East,Otay Mesa Expansion,Year,use,root,folder,,,,,,
+1,No Build,0 lanes,2020,yes,New_Runs,run_1 (2020 No-Build OM CV_10),,,,,,
+2,No Build,3 lanes,2020,yes,New_Runs,run_2 (2020_nobuild_OM_CV13),,,,,,
+3,No Build,3 lanes,2030,yes,New_Runs,run_3 (2030_nobuild_OM_CV13),,,,,,
+4,No Build,3 lanes,2040,yes,New_Runs,run_4 (2040_nobuild_OM_CV13),,,,,,
+5,5x5 Base,3 lanes,2020,yes,New_Runs,run_5 (2020 Build 5x5 OM CV_13),,,,,,
+6,5x5 Base,6 lanes,2020,yes,New_Runs,run_6 (2020 Build 5x5 OM CV_16),,,,,,
+7,5x5 Base,3 lanes,2030,yes,New_Runs,run_7 (2030_5x5_OM_CV13),,,,,,
+8,5x5 Base,3 lanes,2040,yes,New_Runs,run_8 (2040_5x5_OM_CV13),,,,,,
+9,5x5 Base,6 lanes,2040,yes,New_Runs,run_9 (2040_5x5_OM_CV16),,,,,,
+10,5x5 Opt (+10% from the base),3 lanes,2040,yes,New_Runs,run_10 (2040_5x5_Opt_OM_CV13),,,,,,
+11,5x5 Pess (-10% from the base),3 lanes,2040,yes,New_Runs,run_11 (2040_5x5_Pess_OM_CV13),,,,,,
+12,3x3,3 lanes,2020,yes,New_Runs,run_12 (2020_3x3_OM_CV13),,,,,,
+13,3x3,3 lanes,2040,yes,New_Runs,run_13 (2040_3x3_OM_CV13),,,,,,
+14,10x10,3 lanes,2020,yes,New_Runs,run_14 (2020_10x10_OM_CV13),,,,,,
+15,10x10,3 lanes,2040,yes,New_Runs,run_15 (2040_10x10_OM_CV13),,,,,,
+16,5x5 Opt (+10% from the base),3 lanes,2030,yes,New_Runs,run_16 (2030_5x5_Opt_OM_CV13),,,,,,
+17,5x5 Pess (-10% from the base),3 lanes,2030,yes,New_Runs,run_17 (2030_5x5_Pess_OM_CV13),,,,,,
+18,,,2030,yes,2020_runs,1_2030_5x5_Build,,,,,,
+19,No Build,0 lanes,2025,yes,2020_BWTS,1_2025_NoBuild,,,,,,
+20,No Build,,2025,yes,2020_BWTS,1a_2025_NoBuild,,,,,,
+21,5x5,,2025,yes,2020_BWTS,2_2025_Build_5x5,,,,,,
+22,5x5,,2025,yes,2020_BWTS,2a_2025_Build_5x5,,,,,,
+23,No Build,,2035,yes,2020_BWTS,5_2035_NoBuild,,,,,,
+24,No Build,,2035,yes,2020_BWTS,5a_2035_NoBuild,,,,,,
+25,5x5,,2035,yes,2020_BWTS,6a_2035_Build_5x5,,,,,,
+26,10x10,,2035,yes,2020_BWTS,7_2035_Build_10x10,,,,,,
