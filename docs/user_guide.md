@@ -254,6 +254,12 @@ Below is the description of all the fields in the POE rate file.
 
 This model generates a few different output files in the `data_out` folder. The key output files from the model run are `poe_results.csv` and `results.xlsx`. These two files contain the same outputs but in different formats. The model output produces final `open lanes`, `wait time`, `volume`, `queue`, and `toll` for each port of entry and lane/vehicle type configuration by hour. 
 
+We define `wait time` as the amount of time that all vehicles that arrived in hour *n* waited to get processed through primary inspection. Vehicles may actually be processed in a future hour, but their wait time is captured in the hour in which they arrived.
+
+We define `queue` as the number of vehicles still waiting to cross at the end of a given hour.
+
+We define `toll` as the monetary value (2017 USD) charged to vehicles processed (cleared primary inspections) in a given hour.
+
 Here is a snapshot of how the `poe_results.csv` file looks -
 
 ![](screenshots/13_poe_results.PNG)
