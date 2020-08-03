@@ -1,6 +1,6 @@
 
 # Model Installation
-The Otay Mesa model is on GitHub and needs to be cloned from [here](https://github.com/wsp-sag/sr11_ome_v2). This requires a GitHub account with access to the repository. 
+The Otay Mesa model is on GitHub and needs to be cloned from [here](https://github.com/SANDAG/SR11_OME_IG). This requires a GitHub account with access to the repository. 
 
 Here are the steps to follow to clone the model from GitHub:
 1. If your computer does not have Git installed, [download](https://git-scm.com/downloads) and install Git on the machine where you want to install the model. 
@@ -12,7 +12,7 @@ Here are the steps to follow to clone the model from GitHub:
 
 ![](screenshots/2_git_window.PNG)
 
-4. In this Git window, type `git clone https://github.com/wsp-sag/sr11_ome_v2.git` and press Enter. Git will clone a copy of the model to your local directory. After the successful completion of model copy, the Git window should look like something below - 
+4. In this Git window, type `git clone https://github.com/SANDAG/SR11_OME_IG.git` and press Enter. Git will clone a copy of the model to your local directory. After the successful completion of model copy, the Git window should look like something below - 
 
 ![](screenshots/3_git_complete.PNG)
 
@@ -109,8 +109,8 @@ The highlighted properties from the snapshot below are the properties that need 
 
 
 
- * `model.dir` is the location where you have installed the model. For the illustrations in this user guide, this will be set to `C:/Users/kulshresthaa/Desktop/Models/Otay_Mesa/sr11_ome_v2/`
-* `source.dir` is the location of the model code. Example - `C:/Users/kulshresthaa/Desktop/Models/Otay_Mesa/sr11_ome_v2/model/`
+ * `model.dir` is the location where you have installed the model. For the illustrations in this user guide, this will be set to `C:/sr11ome/SR11_OME_IG/`
+* `source.dir` is the location of the model code. Example - `C:/sr11ome/SR11_OME_IG/model/`
 * `r.program.path` is the location of the R program on the local machine. E.g., `C:/Program Files/R/R-3.5.1/bin/x64/`. 
 * `network.file.name` Revise the name of the network .dbd file to the same name as the network you copied to the `data_in\network\` location
 * `poe.rate.file.name` Revise the name of the poe rate file to the same name as the input file you copied to the `data_in\` location
