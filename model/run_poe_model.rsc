@@ -1,22 +1,22 @@
 /*
-Author:
-Ashish Kulshrestha
-WSP
-ashish.kulshrestha@wsp.com
-
 SR11 OME POE Model
-Model v 2.1
+Model v 3.0
 
 TransCAD:
 Version 6.0
 Model Developed on Build 9215 
 Model Ran on Builds 9215 and 9065
+
+Original Author:
+Ashish Kulshrestha
+WSP
+ashish.kulshrestha@wsp.com
 */
 
 Macro "POEModel"
 	RunMacro("TCB Init")
 		
-	property_file = "C:\\Projects\\sr11_ome_v2\\config\\sr11_ome.properties"
+	property_file = "C:\\Projects\\sr11_ome_IG\\config\\sr11_ome.properties"
 	
 	// read properties
 	model_dir = RunMacro("ReadProperty", property_file, "model.dir", "s")
