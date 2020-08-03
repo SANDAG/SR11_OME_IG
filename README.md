@@ -1,7 +1,8 @@
-# Otay Mesa East Model 2.1
+# Otay Mesa East Model 3.0
 
 ## What this repo is
-State Route 11 Otay Mesa East Traffic & Revenue Model Version 2.1
+State Route 11 Otay Mesa East Investment Grade Traffic & Revenue Model Version 3.0
+This model is an update to the model version 2.1 used for the Tier II Innovation Analysis (https://github.com/SANDAG/sr11_ome_v2)
 
 
 ### Model Setup
@@ -17,5 +18,3 @@ State Route 11 Otay Mesa East Traffic & Revenue Model Version 2.1
 - Refer to [user's guide](docs/user_guide.md) for more detail
 ### SANDAG Contact
 Rick Curry (Rick.Curry@sandag.org)
-### WSP Contact
-Ashish Kulshrestha (Ashish.Kulshrestha@wsp.com)
