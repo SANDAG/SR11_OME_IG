@@ -15,6 +15,8 @@ ashish.kulshrestha@wsp.com
 
 Macro "POEModel"
 	RunMacro("TCB Init")
+	
+	max_iter = 3
 		
 	property_file = "C:\\Projects\\sr11_ome_IG\\config\\sr11_ome.properties"
 	
@@ -325,7 +327,7 @@ Macro "POEModel"
     ret_value = RunMacro("RunTranscadAssignment", model_dir, skims_dir, assignment_dir, highway_layer, do_ome)   
     if !ret_value then goto quit
 
-    if iteration >= 5 then converged = 1
+    if iteration >= max_iter then converged = 1
     
     RunMacro("CopyOutputs", model_dir, source_dir, iteration) 
     
@@ -504,7 +506,8 @@ Macro "CreateBatchFile" (batch_file, model_dir, r_program_path, property_file)
     property_file = Substitute(property_file, "\\", "/", )
     r_program_path = Substitute(r_program_path, "\\", "/", )
     
-    line = "@ECHO off"
+  //line = "@ECHO off"
+    line = "@ECHO on"
     WriteLine(f, line)
     
     WriteLine(f, "") 
@@ -519,28 +522,44 @@ Macro "CreateBatchFile" (batch_file, model_dir, r_program_path, property_file)
     
     WriteLine(f, "") 
     
-    line = '%rPath%Rscript.exe "%modelPath%model/allocate_demand_to_ports_of_entry.R" ' + property_file + " 1 50"
+    line = 'title Run simulations 1 to 50'
+    WriteLine(f, line)
+    line = '%rPath%Rscript.exe %modelPath%model/allocate_demand_to_ports_of_entry.R ' + property_file + " 1 50"
     WriteLine(f, line)
     
-    line = '%rPath%Rscript.exe "%modelPath%model/allocate_demand_to_ports_of_entry.R" ' + property_file + " 51 100"
+    line = 'title Run simulations 51 to 100'
+    WriteLine(f, line)
+    line = '%rPath%Rscript.exe %modelPath%model/allocate_demand_to_ports_of_entry.R ' + property_file + " 51 100"
     WriteLine(f, line)
     
-    line = '%rPath%Rscript.exe "%modelPath%model/allocate_demand_to_ports_of_entry.R" ' + property_file + " 101 150"
+    line = 'title Run simulations 101 to 150'
+    WriteLine(f, line)    
+    line = '%rPath%Rscript.exe %modelPath%model/allocate_demand_to_ports_of_entry.R ' + property_file + " 101 150"
     WriteLine(f, line)
 
-    line = '%rPath%Rscript.exe "%modelPath%model/allocate_demand_to_ports_of_entry.R" ' + property_file + " 151 200"
-    WriteLine(f, line)
-    
-    line = '%rPath%Rscript.exe "%modelPath%model/allocate_demand_to_ports_of_entry.R" ' + property_file + " 201 250"
-    WriteLine(f, line)
-
-    line = '%rPath%Rscript.exe "%modelPath%model/allocate_demand_to_ports_of_entry.R" ' + property_file + " 251 300"
-    WriteLine(f, line)
-    
-    line = '%rPath%Rscript.exe "%modelPath%model/allocate_demand_to_ports_of_entry.R" ' + property_file + " 301 350"
+    line = 'title Run simulations 151 to 200'
+    WriteLine(f, line)    
+    line = '%rPath%Rscript.exe %modelPath%model/allocate_demand_to_ports_of_entry.R ' + property_file + " 151 200"
     WriteLine(f, line)
 
-    line = '%rPath%Rscript.exe "%modelPath%model/allocate_demand_to_ports_of_entry.R" ' + property_file + " 351 400"
+    line = 'title Run simulations 201 to 250'
+    WriteLine(f, line)     
+    line = '%rPath%Rscript.exe %modelPath%model/allocate_demand_to_ports_of_entry.R ' + property_file + " 201 250"
+    WriteLine(f, line)
+
+    line = 'title Run simulations 251 to 300'
+    WriteLine(f, line)    
+    line = '%rPath%Rscript.exe %modelPath%model/allocate_demand_to_ports_of_entry.R ' + property_file + " 251 300"
+    WriteLine(f, line)
+    
+    line = 'title Run simulations 301 to 350'
+    WriteLine(f, line)     
+    line = '%rPath%Rscript.exe %modelPath%model/allocate_demand_to_ports_of_entry.R ' + property_file + " 301 350"
+    WriteLine(f, line)
+
+    line = 'title Run simulations 351 to 400'
+    WriteLine(f, line)    
+    line = '%rPath%Rscript.exe %modelPath%model/allocate_demand_to_ports_of_entry.R ' + property_file + " 351 400"
     WriteLine(f, line)
     
     CloseFile(f)
