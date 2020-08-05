@@ -36,6 +36,8 @@ To run any model scenario, below are the list of inputs files you need to copy/s
 
 **All of these scenario inputs for every model year are already located in the `scenario_inputs` folder of the model directory.** 
 
+**Additionally, make sure to uncheck the read-option only for your model directory and all folders within the directory.**
+
 You will need to have R installed on your computer (version 3.5.1 was the version used to develop the model).  [Here](<https://cran.r-project.org/bin/windows/base/old/3.5.1/>) is the link to download R (3.5.1), if required. Any other newer R version (say 3.4.1 or 3.5.2 etc.) will work too. If this is the first time installing R on a machine, it is best to get the latest version. 
 
 You will also need TransCAD 6.0 installed on your machine. The model was developed on TransCAD 6.0 with Build 9215 and was run on Build 9215 and 9065. 
@@ -44,7 +46,7 @@ You will also need TransCAD 6.0 installed on your machine. The model was develop
 
 **Install R Packages**
 
-Several R packages need to be installed to run the port of entry model - `simmer`, `tidyverse`, `data.table`, `properties`, and `xlsx`. These R packages automatically get installed (is only done one time for any given machine) as part of model run but if you experience issues with running the R code for the model, you could try installing these packages manually. To do this: open the R program (go to `C:\Program Files\R` folder ->  select the R version folder -> go inside`bin\x64` folder -> right click on the R.exe and click on "Run as administrator. For R-3.5.1 installed on a machine, R program path will be `C:\Program Files\R\R-3.5.1\bin\x64\R.exe`) and copy/paste the following commands one at a time to install the required packages. If R asks for CRAN mirror to use, select USA (CA 1). **Again, this step s not required unless you experience R program errors with the model run.  The model won't run all the way through because certain files produced by the R code will be missing.  It is on WSP's to-do list to make the R package install procedure more robust so that this won't happen**. 
+Several R packages need to be installed to run the port of entry model - `simmer`, `tidyverse`, `data.table`, `properties`, and `xlsx`. These R packages automatically get installed (is only done one time for any given machine) as part of model run but if you experience issues with running the R code for the model, you could try installing these packages manually. To do this: open the R program (go to `C:\Program Files\R` folder ->  select the R version folder -> go inside`bin\x64` folder -> right click on the R.exe and click on "Run as administrator." For R-3.5.1 installed on a machine, R program path will be `C:\Program Files\R\R-3.5.1\bin\x64\R.exe`) and copy/paste the following commands one at a time to install the required packages. If R asks for CRAN mirror to use, select USA (CA 1). **Again, this step s not required unless you experience R program errors with the model run.  The model won't run all the way through because certain files produced by the R code will be missing.  It is on WSP's to-do list to make the R package install procedure more robust so that this won't happen**. 
 
 `install.packages("simmer")`
 
@@ -145,7 +147,7 @@ To summarize, here are the steps to SET UP the model -
 
 Running the model requires TransCAD (version 6) and R program installed on the machine. 
 
-Open TransCAD software and look for GIS Developer's Kit option under Tools. 
+Open TransCAD software (**make sure to run as an administrator**) and look for GIS Developer's Kit option under Tools. 
 
 ![](screenshots/10_gdk_option.PNG)
 
