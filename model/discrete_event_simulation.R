@@ -757,7 +757,8 @@ Discrete_Event_Simulation <- function(input_port_rates_df, input_port_of_entry_d
                                                hour = hour_index, 
                                                prev_queue_orig_hours = previous_queue_orig_hours_vector,
                                                prev_wait_times = previous_hour_wait_time_vector,
-                                               ongoing = TRUE)
+                                               ongoing = TRUE) %>%
+                           filter(hour>0)  #Chi Ping Lam (8/3/2020) : filter out bogus zero hour records
         
         unprocessed_vehicles_df <- 
           hour_results_df %>%
@@ -805,10 +806,16 @@ Discrete_Event_Simulation <- function(input_port_rates_df, input_port_of_entry_d
   
     # revise the wait time of unprocessed vehicles to a more reasonable value
     if(market_segment_hourly_queue[24] > 0){
-      first_unprocessed_hour <- config_results[min(which(config_results$processed == FALSE)), "hour"]
+    # Chi Ping Lam (7/18/2020)
+    #This is the original code causing fatal erro
+    #  when using a data frame, first_unprocessed_hour, with the dataframe list, hour  
+    #The fix is to turn first_unprocessed_hour to a numeric variable   
       
+      first_unprocessed_hour <- config_results[min(which(config_results$processed == FALSE)), "hour"]
+    
+      first_unprocessed_hour.num <- as.numeric(first_unprocessed_hour)
       config_results <- config_results %>%
-        mutate(wait_time = ifelse(processed, wait_time, (24 - first_unprocessed_hour)*60 + (hour - first_unprocessed_hour + 1)*30))
+        mutate(wait_time = ifelse(processed, wait_time, (24 - first_unprocessed_hour.num)*60 + (hour - first_unprocessed_hour.num + 1)*30))
     }
       
     # aggregate vehicles to calculate median wait for config
