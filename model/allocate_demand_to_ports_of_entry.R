@@ -20,7 +20,7 @@ print("Initialization ... ")
 
 # -----------------------------------------------------------------------------------
 # R Packages
-packages_vector <- c("simmer", "tidyverse", "data.table", "properties", "xlsx")
+packages_vector <- c("simmer", "tidyverse", "data.table", "properties", "openxlsx")
 
 need_to_install <- packages_vector[!(packages_vector %in% installed.packages()[,"Package"])]
 
@@ -250,7 +250,11 @@ if(WARM_START) {
       mutate(median_wait_time = 0, median_process_time = 0, queue = 0)
     
     # weighted average of the zero and initial port of entry wait times
-    des_outcomes_df <- Compute_Weighted_Average_Wait_Time(des_outcomes_df, prior_des_outcomes_df, 0.9)
+    # Chi Ping Lam 7/23/2020
+    # For the first iteration, the des_outcomes_df should be simply the rsesult of first simulation
+    #   and there is need to compute a weighted average (no previous result!)
+    # There is no base of apply a 0.9 factor here too 
+    #des_outcomes_df <- Compute_Weighted_Average_Wait_Time(des_outcomes_df, prior_des_outcomes_df, 0.9)
     
   } else {
     debug_dir <- paste0(data_out_dir, "debug/")
@@ -401,16 +405,32 @@ if(END_ITER == MAX_ITERATIONS){
     arrange(port_name,direction,vehicle_type,traveler_type,hour) %>%
     mutate(processed_volume = 0)
   
+  #Chi Ping Lam (8/3/2020)
+  #The codes below requires each config must have exactly 24 records, one for each hour
+  # otherwise the volume calculation is just wrong
+  #preload_df <- port_configurations_df %>%
+  #    unite("config", c("port_name", "direction", "vehicle_type", "traveler_type"), sep = DELIMITER) %>%
+  #    select(config, initial_queue)
+  #
+  #for (i in 1:(length(unique(des_outcomes_df$config)))){
+  #  preload <- preload_df %>% filter(config == unique(des_outcomes_df$config)[i]) %>% .$initial_queue
+  #  for(j in 1:24){
+  #    joined$processed_volume[(i-1)*24+j] <- ifelse(j==1,(joined$volume-joined$queue)[(i-1)*24+j] + preload,(joined$volume-joined$queue)[(i-1)*24+j]+joined$queue[(i-1)*24+j-1])
+  #  }
+  #}
+  #
+  #Here is the revised script using join rahter than for loop
   preload_df <- port_configurations_df %>%
-    unite("config", c("port_name", "direction", "vehicle_type", "traveler_type"), sep = DELIMITER) %>%
-    select(config, initial_queue)
-  
-  for (i in 1:(length(unique(des_outcomes_df$config)))){
-    preload <- preload_df %>% filter(config == unique(des_outcomes_df$config)[i]) %>% .$initial_queue
-    for(j in 1:24){
-      joined$processed_volume[(i-1)*24+j] <- ifelse(j==1,(joined$volume-joined$queue)[(i-1)*24+j] + preload,(joined$volume-joined$queue)[(i-1)*24+j]+joined$queue[(i-1)*24+j-1])
-    }
-  }
+     select(port_name, direction, vehicle_type, traveler_type, initial_queue)
+  joined_prev_hr <- joined %>% select (hour, port_name, direction, vehicle_type, traveler_type, queue) %>%
+      mutate(hour = hour + 1) %>%
+      rename(prev_queue = queue) 
+  joined <- left_join(joined, joined_prev_hr, by=c("hour", "port_name", "direction", "vehicle_type", "traveler_type")) %>%   
+     mutate(prev_queue = replace_na(prev_queue,0)) %>%
+     left_join(preload_df, by=c("port_name", "direction", "vehicle_type", "traveler_type")) %>%
+     mutate(processed_volume = ifelse(hour==1,volume-queue+initial_queue, volume-queue+prev_queue)) %>%
+     select(-prev_queue)
+  rm(joined_prev_hr)  
   
   # use this later
   simulated_outcomes_df <- joined
@@ -453,26 +473,30 @@ if(END_ITER == MAX_ITERATIONS){
   open_lanes <- legacy_write_df %>% select(Hour, Type, Open)
   open_lanes[is.na(open_lanes)] <- 0
   open_lanes <- open_lanes %>% spread(key = Type, value = Open)
-  write.xlsx(open_lanes, results_file, sheetName="open_lanes", col.names=TRUE, row.names=FALSE, append=TRUE)
+  addWorksheet(results_wb, "open_lanes")
+  writeData(results_wb, "open_lanes", open_lanes,startCol=1, startRow=1, colNames=TRUE, rowNames=FALSE)
   
   # period vol
   period_vol <- legacy_write_df %>% select(Hour, Type, Volume)
   period_vol[is.na(period_vol)] <- 0 
   period_vol <- period_vol %>% mutate(Volume = as.integer(Volume))
   period_vol <- period_vol %>% spread(key = Type, value = Volume)
-  write.xlsx(period_vol, results_file, sheetName="period_volume", col.names=TRUE, row.names=FALSE, append=TRUE)
+  addWorksheet(results_wb, "period_volume")
+  writeData(results_wb, "period_volume", period_vol, startCol=1, startRow=1, colNames=TRUE, rowNames=FALSE)
   
   # wait time
   wait_time <- legacy_write_df %>% select(Hour, Type, Wait_Time)
   wait_time[is.na(wait_time)] <- 0 
   wait_time <- wait_time %>% spread(key = Type, value = Wait_Time)
-  write.xlsx(wait_time, results_file, sheetName="wait_time", col.names=TRUE, row.names=FALSE, append=TRUE)
+  addWorksheet(results_wb, "wait_time")
+  writeData(results_wb, "wait_time", wait_time,startCol=1, startRow=1, colNames=TRUE, rowNames=FALSE)
   
   # queue
   queue <- legacy_write_df %>% select(Hour, Type, Queue)
   queue[is.na(queue)] <- 0 
   queue <- queue %>% spread(key = Type, value = Queue)
-  write.xlsx(queue, results_file, sheetName="queue", col.names=TRUE, row.names=FALSE, append=TRUE)
+  addWorksheet(results_wb, "queue")
+  writeData(results_wb, "queue", queue, startCol=1, startRow=1, colNames=TRUE, rowNames=FALSE)
   
   if("OME" %in% unique(legacy_write_df$POE)) {
     #toll
@@ -482,7 +506,8 @@ if(END_ITER == MAX_ITERATIONS){
     sb_com_toll <- legacy_write_df %>% filter(POE == "OME", Lane == "COM_SB") %>% .$SB_TRK_Toll
     
     toll <- data.frame(Hour = 1:24, NB_POV = nb_pov_toll, SB_POV = sb_pov_toll, NB_COV = nb_com_toll, SB_COV = sb_com_toll)
-    write.xlsx(toll, results_file, sheetName="tolls", col.names=TRUE, row.names=FALSE, append=TRUE)
+    addWorksheet(results_wb, "tolls")
+    writeData(results_wb, "tolls", toll ,startCol=1, startRow=1, colNames=TRUE, rowNames=FALSE)
   }
   
   # -----------------------------------------------------------------------------------
