@@ -1,5 +1,0 @@
-Copied directly from 2040:
-Network
-POE_Rates
-
-Trip_Tables created based on straight growth projections
